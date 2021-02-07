@@ -1,0 +1,38 @@
+<app-search (searchInputValueOutput)="getSearchInputValue($event)"></app-search>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Car plate number</th>
+        <th scope="col">
+            <button (click)="addRecord()" type="button" class="btn btn-outline-success">Add</button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pageSlice; let i = index;">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.firstName}}</td>
+        <td>{{item.lastName}}</td>
+        <td class="table__text--big" >{{item.carPlateNumber}}</td>
+        <td>
+            <button (click)="editRecord(item)" type="button" class="btn btn-outline-warning">Edit</button>
+            <button (click)="deleteRecord(item.id, item.firstName + ' ' + item.lastName + ' ' + item.carPlateNumber)" type="button" class="btn btn-outline-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="container">
+    <mat-paginator [length]="recordsLength"
+    [pageSize]="5"
+    [pageSizeOptions]="[10, 3]"
+    (page)="onPaginatorEvent($event)">
+  </mat-paginator>
+</div>
+<app-modal-window (loadModalWindowOutput)="getLoadModalWindow($event)"  [selectedTableRecord]="selectedTableRecord" *ngIf="loadModalWindow"></app-modal-window>
+
+
+
+

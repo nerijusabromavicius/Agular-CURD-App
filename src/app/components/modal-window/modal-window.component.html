@@ -1,0 +1,24 @@
+<div class="overlay-container">
+    <div class="overlay-container__content">
+        <form action="" method="post" id="tableRecord" #tableRecord="ngForm" (ngSubmit)="onSubmit(tableRecord.value)">
+            <div *ngIf="validationErrors.length" class="overlay-container__error-message">{{validationErrors[0]}}</div>
+            <div class="form-group">
+                <label for="exampleInput">Name</label>
+                <input  name="firstName"  type="text" class="form-control" id="nameInput" placeholder="Enter your name" [ngModel]="selectedTableRecord?.firstName">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput">Last name</label>
+                <input name="lastName" type="text" class="form-control" id="lastNameInput" placeholder="Enter your last name" [ngModel]="selectedTableRecord?.lastName">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput">Car plate number</label>
+                <input name="carPlateNumber" type="text" class="form-control table__text--big"  maxlength="6" placeholder="ABC123" [ngModel]="selectedTableRecord?.carPlateNumber">
+            </div>
+            <button type="submit" class="btn btn-outline-success overlay-container--float-right">Submit</button>
+        </form>
+        <button (click)="close()" type="close" class="btn btn-outline-danger closeModal">Close</button>
+    </div>
+</div>
+    
+
+
